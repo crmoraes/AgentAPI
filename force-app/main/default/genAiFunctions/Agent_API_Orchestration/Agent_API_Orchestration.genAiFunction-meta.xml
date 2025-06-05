@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Answer any customer questions by interacting with other AI Agent</description>
+    <invocationTarget>Agent_API_Orchestration</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <mappingAttributes>
+        <label>agentResponse</label>
+        <name>output_agentResponse</name>
+        <parameterName>agentResponse</parameterName>
+        <parameterType>output</parameterType>
+    </mappingAttributes>
+    <masterLabel>Agent API Orchestration</masterLabel>
+</GenAiFunction>

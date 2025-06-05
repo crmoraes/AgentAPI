@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Get Authorization Token for API Access</description>
+    <invocationTarget>AgentAPIToken</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <mappingAttributes>
+        <label>isAuthorized</label>
+        <name>output_isAuthorized</name>
+        <parameterName>isAuthorized</parameterName>
+        <parameterType>output</parameterType>
+    </mappingAttributes>
+    <masterLabel>Agent API Get Token</masterLabel>
+</GenAiFunction>

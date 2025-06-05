@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Get Last Response from AI Agent only when using the MIAW API</description>
+    <invocationTarget>AgentAPIGetMsg</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <mappingAttributes>
+        <label>isAgentReady</label>
+        <name>output_isAgentReady</name>
+        <parameterName>isAgentReady</parameterName>
+        <parameterType>output</parameterType>
+    </mappingAttributes>
+    <masterLabel>Agent API MIAW Get Response</masterLabel>
+</GenAiFunction>

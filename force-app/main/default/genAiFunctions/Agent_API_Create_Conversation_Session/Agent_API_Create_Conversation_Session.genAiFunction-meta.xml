@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create new API Conversation Session</description>
+    <invocationTarget>AgentAPISession</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <mappingAttributes>
+        <label>isSessionActive</label>
+        <name>output_isSessionActive</name>
+        <parameterName>isSessionActive</parameterName>
+        <parameterType>output</parameterType>
+    </mappingAttributes>
+    <masterLabel>Agent API Create Conversation Session</masterLabel>
+</GenAiFunction>

@@ -1,0 +1,21 @@
+{
+  "required" : [ "AgentAPIName", "msg2Send" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "AgentAPIName" : {
+      "title" : "AgentAPIName",
+      "description" : "Name of API to be used",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "msg2Send" : {
+      "title" : "msg2Send",
+      "description" : "Message to Send to Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

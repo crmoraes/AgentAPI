@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Handles customer inquires and actions related to support cases, including case information, order information, shipping, escalation requests, and internet search questions.</description>
+    <developerName>Orchestration</developerName>
+    <genAiFunctions>
+        <functionName>Agent_API_Create_Token</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Agent_API_Create_Conversation_Session</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Agent_API_Send_Sync_Message</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Agent_API_MIAW_Get_Response</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>A case is a record used to help track a customer&apos;s issues. Customers may have questions about the status of the issue or want to provide more information for the case. Cases are usually associated with a contact</description>
+        <developerName>instruction_acaseisare0</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_acaseisare0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Always use &quot;MIAW API&quot; for &quot;APIConfigName&quot; input in all topic actions</description>
+        <developerName>instruction_alwaysusem1</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_alwaysusem1</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Call the &quot;Agent API MIAW Get Response&quot; action after &quot;Agent API Send Message&quot; action to get responses</description>
+        <developerName>instruction_calltheage2</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_calltheage2</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Call the &quot;Agent API Send Sync Message&quot; action and send the user message again when the &quot;&quot;Agent API MIAW Get Response&quot; action returned response is &quot;Hi, I&apos;m an AI service assistant. How can I help you?&quot;</description>
+        <developerName>instruction_calltheage3</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_calltheage3</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Call the &quot;Agent API Send Sync Message&quot; action and send the user message again when the &quot;&quot;Agent API MIAW Get Response&quot; action returned response is  the same as the message to send</description>
+        <developerName>instruction_calltheage4</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_calltheage4</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Orchestration</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to provide responses related to case information, orders, shipping, escalations, and internet search questions through collaboration with other AI Agents.</scope>
+</GenAiPlugin>

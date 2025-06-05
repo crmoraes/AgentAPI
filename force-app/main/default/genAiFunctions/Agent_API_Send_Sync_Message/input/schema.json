@@ -1,0 +1,21 @@
+{
+  "required" : [ "APIConfigName", "msg2Send" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "APIConfigName" : {
+      "title" : "API Configuration Name",
+      "description" : "API Configuration Name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "msg2Send" : {
+      "title" : "Message to Send",
+      "description" : "Message to Send",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

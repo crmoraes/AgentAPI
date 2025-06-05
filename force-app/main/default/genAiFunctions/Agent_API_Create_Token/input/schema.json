@@ -1,0 +1,14 @@
+{
+  "required" : [ "APIConfigName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "APIConfigName" : {
+      "title" : "API Configuration Name",
+      "description" : "API Configuration Name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
