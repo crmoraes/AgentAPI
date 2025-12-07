@@ -1,60 +1,190 @@
+```mermaid
 flowchart LR
-  subgraph Edge["Edge & Frontend"]
-    UI["Web App (Next.js/React)"]
+
+  %% =========================
+  %% EXPERIENCE / CHANNEL LAYER
+  %% =========================
+  subgraph Edge["User & Channel Layer"]
+    SFUI["Salesforce Core UIs (Sales / Service / Platform Apps)"]
+    ExpCloud["Experience Cloud Sites / Portals"]
+    Slack["Slack / Chat Interfaces"]
+    Email["Email / Digital Engagement"]
   end
 
-  subgraph API["API & Gateway"]
-    APIGW["AWS API Gateway"]
-    BFF["Backend-for-Frontend (Node.js/TS, NestJS)"]
+  %% =========================
+  %% AGENTIC INTELLIGENCE LAYER
+  %% =========================
+  subgraph Agentic["Agentic Intelligence Layer (Einstein 1 + Agentforce)"]
+    Copilot["Einstein Copilot (Natural Language Interface)"]
+    Agentforce["Agentforce / Atlas Reasoning Engine"]
+    ToolRouter["Tool & Skill Orchestrator (Tool-Calling / Policies)"]
+
+    subgraph AgentTools["Agent Tools (within Salesforce)"]
+      ToolDC["Tool: Data Cloud Query / Data Graph"]
+      ToolVec["Tool: Vector Search (Semantic Memory)"]
+      ToolInsights["Tool: Insight Retrieval & Ranking"]
+      ToolFlow["Tool: Salesforce Flow / Automation"]
+      ToolApex["Tool: Apex / Platform Services"]
+      ToolAnalytics["Tool: CRM Analytics / Tableau Queries"]
+      ToolExtAPI["Tool: External APIs / Webhooks"]
+    end
   end
 
-  subgraph Ingest["Ingestion & Streaming"]
-    Conn["Source Connectors (Python/TS)"]
-    MQ["Kafka / Redpanda"]
-    ETL["Ingestion Orchestrator (Dagster/Airflow)"]
+  %% =========================
+  %% UNIFIED KNOWLEDGE & DATA CLOUD
+  %% =========================
+  subgraph USM["Unified Knowledge & Data Cloud Layer (USM Core)"]
+    subgraph DC["Data Cloud"]
+      DCIngest["Data Cloud Ingestion & Connectors"]
+      DCLake["Data Lakehouse / Data Space"]
+      DMO["Data Model Objects (Profiles, Accounts, Products, Vendors)"]
+      DCGraph["Data Graphs (Customer 360, Dependencies, Journeys)"]
+      DCVector["Vector Database (Docs, Tickets, Transcripts, Notes)"]
+    end
+
+    subgraph Knowledge["Knowledge & Insight System"]
+      KGConcept["Semantic Concepts & Topics (e.g. NA Growth, Pricing Friction)"]
+      Insight["Insight Objects (Risks, Blind Spots, Hypotheses, Trends)"]
+      Contradiction["Conflict / Contradiction Records"]
+    end
   end
 
-  subgraph Storage["Data & Memory Layer"]
-    S3["S3 – Raw Docs / Artifacts"]
-    PG["Aurora Postgres + pgvector"]
-    KG["Neo4j Aura (Knowledge Graph)"]
-    VS["Qdrant Cloud (Vector Store)"]
+  %% =========================
+  %% SALESFORCE OPERATIONAL CLOUDS
+  %% =========================
+  subgraph SFApps["Operational Systems (Full Salesforce Stack)"]
+    SalesCloud["Sales Cloud (Opportunities, Forecasts)"]
+    ServiceCloud["Service Cloud (Cases, SLAs, Knowledge Articles)"]
+    MktCloud["Marketing Cloud / Journeys"]
+    Commerce["Commerce Cloud (Orders, Carts)"]
+    PlatformApp["Custom Platform Apps (Objects, Apex, Flows)"]
+    Analytics["CRM Analytics / Tableau Dashboards"]
   end
 
-  subgraph ML["Semantic Processing & Models"]
-    Embed["Embedding Service (Python + vLLM/Ray Serve)"]
-    NER["Extraction & NER Service (Python)"]
-    Contr["Contradiction Detector"]
+  %% =========================
+  %% EXTERNAL ENTERPRISE SOURCES
+  %% =========================
+  subgraph ExtSrc["External & Non-SF Enterprise Sources"]
+    Confluence["Confluence / Internal Wiki"]
+    GDrive["Google Drive / SharePoint / Box"]
+    Jira["Jira / Issue Tracking"]
+    Logs["Product Usage Logs / Data Warehouse"]
+    VendorSys["Vendor / Billing / Contracts Systems"]
+    RegFeeds["Regulatory / News / External Signals"]
   end
 
-  subgraph Reason["Reasoning & USM Engine"]
-    Orchestrator["USM Orchestrator / Agent Service"]
-    GraphOps["Graph Ops Service (Graph API)"]
-    Insight["Insight Engine (scheduled jobs)"]
+  %% =========================
+  %% INTEGRATION & SEMANTIC ENRICHMENT
+  %% =========================
+  subgraph Integr["Integration, ETL & Optional External Semantics"]
+    Mule["MuleSoft / iPaaS / APIs"]
+    ETL["ETL & Data Prep (Data Cloud Pipelines / External ETL)"]
+    ExtML["Optional External ML / LLM Services (NER, Relations, Events)"]
+    ExtKG["Optional External Knowledge Graph (Neo4j / Neptune)"]
+    ExtVec["Optional External Vector Store (Qdrant / Weaviate)"]
   end
 
-  subgraph Obs["Platform"]
-    Auth["Auth (Auth0/Cognito + OPA)"]
-    Telemetry["OpenTelemetry + Prometheus/Grafana + Loki"]
+  %% =========================
+  %% PLATFORM SERVICES
+  %% =========================
+  subgraph Platform["Platform Services"]
+    Auth["Identity & Access (SSO / OAuth / SAML)"]
+    Sec["Security, Sharing & Object-Level / Row-Level ACLs"]
+    Audit["Audit / Data Lineage / Compliance"]
+    Obs["Observability (Logs, Metrics, Traces)"]
   end
 
-  UI --> APIGW --> BFF
-  BFF --> Orchestrator
-  BFF --> Auth
+  %% =========================
+  %% FLOWS: EXPERIENCE -> AGENTS -> KNOWLEDGE -> ACTION
+  %% =========================
 
-  Conn --> MQ
-  MQ --> ETL
-  ETL --> S3
-  ETL --> PG
-  ETL --> VS
-  ETL --> KG
+  %% USERS ENTER VIA ANY CHANNEL
+  SFUI --> Copilot
+  ExpCloud --> Copilot
+  Slack --> Copilot
+  Email --> Copilot
 
-  Orchestrator --> VS
-  Orchestrator --> KG
-  Orchestrator --> PG
-  Orchestrator --> Embed
-  Orchestrator --> GraphOps
+  %% COPILOT HANDS OFF TO AGENTFORCE
+  Copilot --> Agentforce
+  Agentforce --> ToolRouter
 
-  ETL --> ML
-  ML --> KG
-  ML --> PG
+  %% AGENTFORCE CALLS TOOLS (KNOWLEDGE + ACTION)
+  ToolRouter --> ToolDC
+  ToolRouter --> ToolVec
+  ToolRouter --> ToolInsights
+  ToolRouter --> ToolAnalytics
+  ToolRouter --> ToolFlow
+  ToolRouter --> ToolApex
+  ToolRouter --> ToolExtAPI
+
+  %% TOOLS REACH INTO DATA CLOUD / KNOWLEDGE SYSTEM
+  ToolDC --> DCGraph
+  ToolDC --> DMO
+  ToolVec --> DCVector
+  ToolInsights --> Insight
+  ToolAnalytics --> Analytics
+
+  %% OPERATIONAL CLOUDS FEED DATA CLOUD
+  SalesCloud --> DCIngest
+  ServiceCloud --> DCIngest
+  MktCloud --> DCIngest
+  Commerce --> DCIngest
+  PlatformApp --> DCIngest
+  Analytics --> DCIngest
+
+  %% EXTERNAL SOURCES FEED DATA CLOUD & KNOWLEDGE
+  Confluence --> Mule --> DCIngest
+  GDrive --> Mule --> DCIngest
+  Jira --> Mule --> DCIngest
+  Logs --> Mule --> DCIngest
+  VendorSys --> Mule --> DCIngest
+  RegFeeds --> Mule --> DCIngest
+
+  %% DATA CLOUD INTERNAL PIPELINES
+  DCIngest --> DCLake
+  DCLake --> DMO
+  DMO --> DCGraph
+  DCLake --> DCVector
+
+  %% SEMANTIC ENRICHMENT / OPTIONAL EXTERNAL LAYERS
+  DCLake --> ETL --> ExtML
+  ExtML --> ExtKG
+  ExtML --> ExtVec
+  ExtKG --> DCGraph
+  ExtVec --> DCVector
+
+  %% KNOWLEDGE SYSTEM BUILT ON TOP OF DATA CLOUD
+  DCGraph --> KGConcept
+  DCVector --> KGConcept
+  KGConcept --> Insight
+  Insight --> Contradiction
+  DCGraph --> Insight
+
+  %% AGENTFORCE CONSUMES INSIGHTS AS A TOOL
+  Insight --> ToolInsights
+  ToolInsights --> Agentforce
+
+  %% AGENTFORCE DRIVES ACTION BACK INTO SALESFORCE
+  ToolFlow --> SalesCloud
+  ToolFlow --> ServiceCloud
+  ToolFlow --> PlatformApp
+  ToolApex --> PlatformApp
+  ToolExtAPI --> ExtSrc
+
+  %% PLATFORM SERVICES APPLY EVERYWHERE
+  Auth --> Edge
+  Auth --> SFApps
+  Auth --> Agentic
+
+  Sec --> SFApps
+  Sec --> DC
+  Sec --> Knowledge
+
+  Audit --> DC
+  Audit --> Integr
+  Audit --> Agentic
+
+  Obs --> Agentic
+  Obs --> DC
+  Obs --> SFApps
+  Obs --> Integr
