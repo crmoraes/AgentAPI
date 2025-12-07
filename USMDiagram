@@ -1,0 +1,60 @@
+flowchart LR
+  subgraph Edge["Edge & Frontend"]
+    UI["Web App (Next.js/React)"]
+  end
+
+  subgraph API["API & Gateway"]
+    APIGW["AWS API Gateway"]
+    BFF["Backend-for-Frontend (Node.js/TS, NestJS)"]
+  end
+
+  subgraph Ingest["Ingestion & Streaming"]
+    Conn["Source Connectors (Python/TS)"]
+    MQ["Kafka / Redpanda"]
+    ETL["Ingestion Orchestrator (Dagster/Airflow)"]
+  end
+
+  subgraph Storage["Data & Memory Layer"]
+    S3["S3 – Raw Docs / Artifacts"]
+    PG["Aurora Postgres + pgvector"]
+    KG["Neo4j Aura (Knowledge Graph)"]
+    VS["Qdrant Cloud (Vector Store)"]
+  end
+
+  subgraph ML["Semantic Processing & Models"]
+    Embed["Embedding Service (Python + vLLM/Ray Serve)"]
+    NER["Extraction & NER Service (Python)"]
+    Contr["Contradiction Detector"]
+  end
+
+  subgraph Reason["Reasoning & USM Engine"]
+    Orchestrator["USM Orchestrator / Agent Service"]
+    GraphOps["Graph Ops Service (Graph API)"]
+    Insight["Insight Engine (scheduled jobs)"]
+  end
+
+  subgraph Obs["Platform"]
+    Auth["Auth (Auth0/Cognito + OPA)"]
+    Telemetry["OpenTelemetry + Prometheus/Grafana + Loki"]
+  end
+
+  UI --> APIGW --> BFF
+  BFF --> Orchestrator
+  BFF --> Auth
+
+  Conn --> MQ
+  MQ --> ETL
+  ETL --> S3
+  ETL --> PG
+  ETL --> VS
+  ETL --> KG
+
+  Orchestrator --> VS
+  Orchestrator --> KG
+  Orchestrator --> PG
+  Orchestrator --> Embed
+  Orchestrator --> GraphOps
+
+  ETL --> ML
+  ML --> KG
+  ML --> PG
